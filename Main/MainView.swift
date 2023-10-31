@@ -9,9 +9,17 @@ import UIKit
 
 final class MainView: UIView {
     //MARK: - UI Objects
+    private lazy var messageLabel: UILabel = {
+       let lb = UILabel()
+        lb.text = "사진을 선택하세요."
+        lb.textColor = .black
+        return lb
+    }()
+    
     private lazy var selectedImageView: UIImageView = {
         let uv = UIImageView()
         uv.contentMode = .scaleAspectFit
+        uv.backgroundColor = .white
         return uv
     }()
     
@@ -40,18 +48,22 @@ final class MainView: UIView {
 extension MainView {
     func setSelectedImage(_ image: UIImage) {
         self.selectedImageView.image = image
+        self.messageLabel.isHidden = selectedImageView.image != nil
     }
 }
 
 //MARK: - Set Up UI
 extension MainView {
     private func setupUI() {
-        addSubviews(selectedImageView, collectionView)
+        addSubviews(selectedImageView, messageLabel, collectionView)
         
         NSLayoutConstraint.activate([
             selectedImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             selectedImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             selectedImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            
+            messageLabel.centerXAnchor.constraint(equalTo: selectedImageView.centerXAnchor),
+            messageLabel.centerYAnchor.constraint(equalTo: selectedImageView.centerYAnchor),
             
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
