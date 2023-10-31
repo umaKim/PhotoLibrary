@@ -6,7 +6,7 @@
 
 Repository에서 디바이스로부터 모든 이미지를 받아와서 ViewModel로 넘겨 줍니다.
 ViewModel은 화면 상태와 관련된 business logic의 책임을 담당합니다.
-Business Logic으로는 한 row에 몇개의 column 사진들이 보여야하는지, PHCachingImageManager로 PHAsset의 이미지들을 어떻게 UIImage로 만들어오는지 등을 담당하게 하였습니다. 이러한 과정들은 어떻게 수많은 유저의 이미지들을 메모리 이슈 없이 가져올지를 위해 고안된것입니다.
+Business Logic으로는 한 row에 몇개의 column 사진들이 보여야하는지, PHCachingImageManager로 PHAsset의 이미지들을 어떻게 UIImage로 만들어오는지 등을 담당하게 하였습니다. 이러한 과정들은 어떻게 수많은 유저의 이미지들을 메모리 이슈 없이 가져올지를 위해 고안된것입니다. 이런식으로 책임 분리가 명확하게 해서 유지보수를 유리하게 했습니다.
 
 
 ## 시연 영상
