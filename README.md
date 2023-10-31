@@ -23,6 +23,6 @@ Business Logic으로는 한 row에 몇개의 column 사진들이 보여야하는
 
 <br/>
 
-#### 약 10000개 이상이 넘는 이미지를 불러오고 스크롤 해도 메모리에 이슈가 없음
+#### 유저의 모든 이미지들을 불러오고 스크롤 해도 메모리에 이슈가 없습니다.
 
 ![RPReplay_Final1698767102](https://github.com/umaKim/PhotoLibrary/assets/85341050/471979af-83f1-4143-bee9-d725b7d00356)
