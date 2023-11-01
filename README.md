@@ -2,7 +2,8 @@
 
 
 ## 앱 구조
-<img width="1117" alt="스크린샷 2023-11-01 오전 12 16 02" src="https://github.com/umaKim/PhotoLibrary/assets/85341050/457102c0-0ff4-40a7-bb3b-bcb88ab2beae">
+<img width="1127" alt="스크린샷 2023-11-01 오전 10 15 50" src="https://github.com/umaKim/PhotoLibrary/assets/85341050/228270db-8546-4882-b7d5-d8f98d00e784">
+
 
 Repository에서 디바이스로부터 모든 이미지를 받아와서 ViewModel로 넘겨 줍니다.
 ViewModel은 화면 상태와 관련된 business logic의 책임을 담당합니다.
