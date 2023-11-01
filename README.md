@@ -13,16 +13,17 @@ Business Logic으로는 한 row에 몇개의 column 사진들이 보여야하는
 
 #### 3, 4, 5로 변경 기능
 
-![RPReplay_Final1698765899](https://github.com/umaKim/PhotoLibrary/assets/85341050/5f63fb48-bae8-4146-a7a9-c10893747795)
+![RPReplay_Final1698765899](https://github.com/umaKim/PhotoLibrary/assets/85341050/e1b1dacf-46b7-44d0-98d1-290df29c5d55)
 
 <br/>
 
 #### 사진을 누르면 해당 사진이 보이는 기능
 
-![RPReplay_Final1698766147 (1)](https://github.com/umaKim/PhotoLibrary/assets/85341050/6c7b072c-6f52-497b-b6b5-beae00f755de)
+![RPReplay_Final1698766147 (1)](https://github.com/umaKim/PhotoLibrary/assets/85341050/988b9999-d9a0-4a32-8836-523a4fbd427f)
 
 <br/>
 
 #### 유저의 모든 이미지들을 불러오고 스크롤 해도 메모리에 이슈가 없습니다.
+![RPReplay_Final1698767102](https://github.com/umaKim/PhotoLibrary/assets/85341050/0a5b954d-b150-4f21-86e7-fe09e32942d1)
 
-![RPReplay_Final1698767102](https://github.com/umaKim/PhotoLibrary/assets/85341050/471979af-83f1-4143-bee9-d725b7d00356)
+
