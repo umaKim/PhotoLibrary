@@ -56,8 +56,8 @@ extension MainViewModel {
         completion: @escaping (UIImage) -> Void
     ) {
         let targetSize = CGSize(
-            width: UIScreen.main.bounds.width/CGFloat(cellStatus.rawValue),
-            height: UIScreen.main.bounds.width/CGFloat(cellStatus.rawValue)
+            width: UIScreen.main.bounds.width,
+            height: UIScreen.main.bounds.height
         )
         imageManager.requestImage(
             for: assets[index],
