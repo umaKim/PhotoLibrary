@@ -2,7 +2,11 @@
 
 
 ## 앱 구조
+### Data flow
 <img width="1127" alt="스크린샷 2023-11-01 오전 10 15 50" src="https://github.com/umaKim/PhotoLibrary/assets/85341050/228270db-8546-4882-b7d5-d8f98d00e784">
+
+### Depdency Diagram
+<img width="1459" alt="스크린샷 2023-11-04 오후 9 33 14" src="https://github.com/umaKim/PhotoLibrary/assets/85341050/0f33804c-1d8e-4ccb-b657-18eb29bc6697">
 
 
 Repository에서 디바이스로부터 모든 이미지를 받아와서 ViewModel로 넘겨 줍니다.
