@@ -28,6 +28,13 @@ final class MainViewModel {
     private let repository: Repository
     private var cancellables: Set<AnyCancellable>
     
+    private let imageRequestOptions: PHImageRequestOptions = {
+        let options = PHImageRequestOptions()
+        options.isSynchronous = false
+        options.deliveryMode = .highQualityFormat
+        return options
+    }()
+    
     init(_ repository: Repository) {
         self.repository = repository
         self.cancellables = .init()
@@ -41,29 +48,12 @@ extension MainViewModel {
         self.cellStatus = status
     }
     
-    func convertToImage(
-        fromAssetAt index: Int,
-        completion: @escaping(UIImage) -> Void
-    ) {
-        getUIImageFromPHAsset(
-            asset: assets[index],
-            completion: completion
-        )
-    }
-    
-    func imageOfAsset(
-        at index: Int,
-        completion: @escaping (UIImage) -> Void
-    ) {
-        let targetSize = CGSize(
-            width: UIScreen.main.bounds.width,
-            height: UIScreen.main.bounds.height
-        )
+    func getImage(fromAssetAt index: Int, completion: @escaping (UIImage) -> Void) {
         imageManager.requestImage(
             for: assets[index],
-            targetSize: targetSize,
+            targetSize: CGSize(width: 300, height: 300),
             contentMode: .aspectFill,
-            options: nil
+            options: imageRequestOptions
         ) { (image, _) in
             completion(image ?? UIImage())
         }
@@ -73,18 +63,20 @@ extension MainViewModel {
 //MARK: - Private Methods
 extension MainViewModel {
     private func fetchPhotosInRange() {
-        repository
-            .dataPublisher
+        repository.dataPublisher
             .sink(receiveCompletion: {[weak self] completion in
+                guard let self = self else { return }
                 switch completion {
                 case .finished:
-                    self?.mainViewModelSubject.send(.updateData)
-                    
+                    self.mainViewModelSubject.send(.updateData)
                 case .failure(let errorType):
+                    let errorMsg: String
                     switch errorType {
-                    case .restricted, .notDetermined, .denied: 
-                        self?.mainViewModelSubject.send(.showAlert("Error"))
+                    case .restricted: errorMsg = "Access restricted"
+                    case .notDetermined: errorMsg = "Access not determined"
+                    case .denied: errorMsg = "Access denied"
                     }
+                    self.mainViewModelSubject.send(.showAlert(errorMsg))
                 }
             }, receiveValue: {[weak self] dataType in
                 switch dataType {
@@ -93,27 +85,5 @@ extension MainViewModel {
                 }
             })
             .store(in: &cancellables)
-    }
-    
-    private func getUIImageFromPHAsset(
-        asset: PHAsset,
-        completion: @escaping (UIImage) -> Void
-    ) {
-        let manager = PHImageManager.default()
-        let option = PHImageRequestOptions()
-        option.isSynchronous = false
-        option.deliveryMode = .highQualityFormat
-        
-        manager.requestImage(
-            for: asset,
-            targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight),
-            contentMode: .aspectFill,
-            options: option,
-            resultHandler: {
-                (result, info) -> Void in
-                guard let result else { return }
-                completion(result)
-            }
-        )
     }
 }
