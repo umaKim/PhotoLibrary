@@ -23,7 +23,7 @@ final class MainViewModel {
     private(set) lazy var mainViewModelPublisher = mainViewModelSubject.eraseToAnyPublisher()
     private let mainViewModelSubject = PassthroughSubject<MainViewModelNotificationType, Never>()
     private(set) var assets: [PHAsset] = []
-    private(set) var imageManager = PHCachingImageManager()
+    private let imageManager = PHCachingImageManager()
     private(set) var cellStatus: CellStatus = .three
     private let repository: Repository
     private var cancellables: Set<AnyCancellable>
@@ -48,10 +48,14 @@ extension MainViewModel {
         self.cellStatus = status
     }
     
-    func getImage(fromAssetAt index: Int, completion: @escaping (UIImage) -> Void) {
+    func getImage(
+        fromAssetAt index: Int,
+        size: CGSize = .init(width: 300, height: 300),
+        completion: @escaping (UIImage) -> Void
+    ) {
         imageManager.requestImage(
             for: assets[index],
-            targetSize: CGSize(width: 300, height: 300),
+            targetSize: size,
             contentMode: .aspectFill,
             options: imageRequestOptions
         ) { (image, _) in
@@ -63,7 +67,8 @@ extension MainViewModel {
 //MARK: - Private Methods
 extension MainViewModel {
     private func fetchPhotosInRange() {
-        repository.dataPublisher
+        repository
+            .dataPublisher
             .sink(receiveCompletion: {[weak self] completion in
                 guard let self = self else { return }
                 switch completion {

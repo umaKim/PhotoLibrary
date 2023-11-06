@@ -135,7 +135,13 @@ extension MainViewController {
 // MARK: - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.getImage(fromAssetAt: indexPath.item) { [weak self] image in
+        viewModel.getImage(
+            fromAssetAt: indexPath.item,
+            size: .init(
+                width: UIScreen.main.bounds.width,
+                height: UIScreen.main.bounds.width
+            )
+        ) { [weak self] image in
             self?.contentView.setSelectedImage(image)
         }
     }
