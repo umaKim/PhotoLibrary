@@ -128,7 +128,8 @@ extension MainViewController {
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(viewModel.assets)
-        diffableDataSource?.apply(snapshot, animatingDifferences: true)
+        guard let diffableDataSource else { return }
+        diffableDataSource.apply(snapshot, animatingDifferences: true)
     }
 }
 
